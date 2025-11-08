@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: 8078076f268e8114c966ce1436d21471
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 715df9372183c47e389bb6e19fbc3b52, type: 3}
+  editorImportSettings:
+    generateSecondaryUVSet: 0
+  importSettings:
+    nodeNameMethod: 1
+    animationMethod: 2
+    generateMipMaps: 1
+    texturesReadable: 0
+    defaultMinFilterMode: 9729
+    defaultMagFilterMode: 9729
+    anisotropicFilterLevel: 1
+  instantiationSettings:
+    mask: -1
+    layer: 0
+    skinUpdateWhenOffscreen: 1
+    lightIntensityFactor: 1
+    sceneObjectCreation: 2
+  assetDependencies:
+  - type: 0
+    originalUri: Assets\Scans\modern_appartment\scene.bin
+    assetPath: Assets\Scans\modern_appartment\scene.bin
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\material_1_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\material_1_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_specularf0.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_specularf0.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_1_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_1_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_1_specularf0.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_1_specularf0.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_2_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_2_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_2_specularf0.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_2_specularf0.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_3_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_3_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_3_specularf0.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_3_specularf0.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_6_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_6_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_4_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_4_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_5_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_5_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_7_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_7_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_8_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_8_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_9_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_9_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_11_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_11_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_10_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_10_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_12_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_12_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_14_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_14_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_16_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_16_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_18_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_18_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_20_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_20_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_23_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_23_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_22_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_22_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_24_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_24_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_25_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_25_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_27_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_27_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_28_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_28_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_29_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_29_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_30_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_30_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_33_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_33_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_34_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_34_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_35_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_35_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_38_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_38_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_37_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_37_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_39_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_39_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_40_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_40_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_41_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_41_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_43_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_43_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_45_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_45_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_47_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_47_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_48_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_48_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_49_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_49_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_51_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_51_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_54_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_54_baseColor.png
+  - type: 1
+    originalUri: Assets\Scans\modern_appartment\textures\auto_55_baseColor.png
+    assetPath: Assets\Scans\modern_appartment\textures\auto_55_baseColor.png
+  reportItems:
+  - type: 2
+    code: 20
+    messages:
+    - KHR_materials_specular
