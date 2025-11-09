@@ -163,4 +163,44 @@ public class ObjectDetectionSample : MonoBehaviour
         _isPaused = false;
         Debug.Log("Object detection resumed");
     }
+
+    /// <summary>
+    /// Toggles object detection on/off. Connect this to your Toggle button in the Inspector.
+    /// </summary>
+    public void ToggleObjectDetection()
+    {
+        _isPaused = !_isPaused;
+
+        // Clear existing rectangles when disabling detection
+        if (_isPaused && _drawRect != null)
+        {
+            _drawRect.ClearRects();
+        }
+
+        Debug.Log($"Object detection {(_isPaused ? "disabled" : "enabled")}");
+    }
+
+    /// <summary>
+    /// Enables object detection
+    /// </summary>
+    public void EnableObjectDetection()
+    {
+        _isPaused = false;
+        Debug.Log("Object detection enabled");
+    }
+
+    /// <summary>
+    /// Disables object detection and clears all UI rectangles
+    /// </summary>
+    public void DisableObjectDetection()
+    {
+        _isPaused = true;
+
+        if (_drawRect != null)
+        {
+            _drawRect.ClearRects();
+        }
+
+        Debug.Log("Object detection disabled");
+    }
 }
