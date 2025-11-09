@@ -7,8 +7,11 @@ using UnityEngine;
 public class ObjectDetectionSample : MonoBehaviour
 {
     [SerializeField] private float _probabilityThreshold = .6f;
+    [SerializeField] private float _minTimeBetweenUpdates = 0.15f;
 
     [SerializeField] private ARObjectDetectionManager _objectDetectionManager;
+
+    private float _lastUpdateTime = 0f;
 
     private Color[] colors = new[]
     {
@@ -65,9 +68,15 @@ public class ObjectDetectionSample : MonoBehaviour
         if (_isPaused)
             return;
 
+        // Throttle updates to improve smoothness
+        if (Time.time - _lastUpdateTime < _minTimeBetweenUpdates)
+            return;
+
+        _lastUpdateTime = Time.time;
+
         string resultString = "";
         float confidence = 0;
-        string _name = "";
+        string name = "";
         var result = obj.Results;
         
         if(result == null)
@@ -78,16 +87,16 @@ public class ObjectDetectionSample : MonoBehaviour
         for (int i = 0; i < result.Count; i++)
         {
             var detection = result[i];
-            var categorization = detection.GetConfidentCategorizations(.5f);
+            var categorization = detection.GetConfidentCategorizations(_probabilityThreshold);
 
             if (categorization.Count <= 0)
             {
-                break; // break if you want to show only one detection at a time
+                continue; // skip this detection and move to the next one
             }
-            
+
             categorization.Sort((a,b) => b.Confidence.CompareTo(a.Confidence));
-            
-            
+
+
             var categoryToDisplay = categorization[0];
 
             // if (validChannels.Contains(categoryToDisplay.CategoryName))
