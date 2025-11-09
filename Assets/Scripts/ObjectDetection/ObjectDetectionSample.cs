@@ -31,7 +31,11 @@ public class ObjectDetectionSample : MonoBehaviour
     private List<string> validChannels = new();
 
     [SerializeField] private DrawRect _drawRect;
-    [SerializeField] private TranslateWords _translateWords;
+    [SerializeField] private TranslateWords _translateWords; // DEPRECATED: Kept for backward compatibility
+
+    [Header("Offline Translation System")]
+    [SerializeField] private TranslationDatabaseSO _translationDatabase;
+    [SerializeField] private LanguageSettings _languageSettings;
 
     private Canvas _canvas;
     private bool _isPaused = false;
@@ -111,27 +115,36 @@ public class ObjectDetectionSample : MonoBehaviour
         
             resultString = $"{name}: {confidence:F2}";
 
-            // Get translation if enabled
-            if (_translateWords != null && _translateWords.IsTranslationEnabled)
+            // Get instant translation from offline database
+            string translatedText = null;
+            if (_translationDatabase != null && _languageSettings != null)
             {
+                translatedText = _translationDatabase.GetTranslation(name, _languageSettings.CurrentLanguage);
+            }
+            else if (_translateWords != null && _translateWords.IsTranslationEnabled)
+            {
+                // FALLBACK: Legacy DeepL API (async, slower, requires internet)
+                // This path is kept for backward compatibility but not recommended
                 int capturedIndex = i;
+                string capturedCategory = categoryToDisplay.CategoryName;
+                float capturedConfidence = confidence;
                 _translateWords.TranslateText(
                     name,
-                    (translatedText) =>
+                    (legacyTranslatedText) =>
                     {
-                        _drawRect.CreateRect(rect, colors[capturedIndex % colors.Length], resultString, translatedText);
+                        _drawRect.CreateRect(rect, colors[capturedIndex % colors.Length], resultString, legacyTranslatedText, capturedCategory, capturedConfidence);
                     },
                     (error) =>
                     {
                         Debug.LogWarning($"Translation failed: {error}");
-                        _drawRect.CreateRect(rect, colors[capturedIndex % colors.Length], resultString);
+                        _drawRect.CreateRect(rect, colors[capturedIndex % colors.Length], resultString, null, capturedCategory, capturedConfidence);
                     }
                 );
+                continue; // Skip the synchronous CreateRect call below
             }
-            else
-            {
-                _drawRect.CreateRect(rect, colors[i % colors.Length], resultString);
-            }
+
+            // Create rectangle with metadata (translation will show on click)
+            _drawRect.CreateRect(rect, colors[i % colors.Length], resultString, translatedText, categoryToDisplay.CategoryName, confidence);
             
             OnFoundItemAtPosition?.Invoke((categoryToDisplay.CategoryName, rect.position));
                 
@@ -202,5 +215,14 @@ public class ObjectDetectionSample : MonoBehaviour
         }
 
         Debug.Log("Object detection disabled");
+    }
+
+    /// <summary>
+    /// Pauses object detection without clearing rectangles (used for focus mode)
+    /// </summary>
+    public void PauseDetectionOnly()
+    {
+        _isPaused = true;
+        Debug.Log("Object detection paused (rectangles preserved)");
     }
 }
