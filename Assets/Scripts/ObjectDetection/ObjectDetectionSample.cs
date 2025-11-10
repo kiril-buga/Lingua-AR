@@ -15,14 +15,15 @@ public class ObjectDetectionSample : MonoBehaviour
 
     private Color[] colors = new[]
     {
-        Color.red,
-        Color.blue,
-        Color.green,
-        Color.yellow,
+        Color.skyBlue,
+        Color.seaGreen,
+        Color.yellowNice,
         Color.magenta,
         Color.cyan,
         Color.white,
-        Color.black
+        Color.azure,
+        Color.coral,
+        Color.limeGreen,
     };
 
     [SerializeField] private ListSpawnObjectToObjectClassSO _objectToObjectClassSo;
