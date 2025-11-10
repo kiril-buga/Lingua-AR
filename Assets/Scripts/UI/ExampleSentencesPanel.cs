@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 /// <summary>
 /// Panel that displays example sentences for a selected word.
@@ -49,13 +50,16 @@ public class ExampleSentencesPanel : MonoBehaviour
     private void OnEnable()
     {
         if (_closeButton != null)
-            _closeButton.onClick.AddListener(Hide);
+            _closeButton.onClick.AddListener(() => Hide());
     }
+
+
+
 
     private void OnDisable()
     {
         if (_closeButton != null)
-            _closeButton.onClick.RemoveListener(Hide);
+            _closeButton.onClick.RemoveListener(() => Hide());
     }
 
     private void OnDestroy()
