@@ -35,18 +35,22 @@ public class ActionMenuPanel : MonoBehaviour
     // ===== UNITY LIFECYCLE =====
     private void Awake()
     {
+        Debug.Log("[ActionMenuPanel] Awake() called");
+
         if (_canvasGroup == null)
             _canvasGroup = GetComponent<CanvasGroup>();
 
         if (_canvas == null)
             _canvas = GetComponentInParent<Canvas>();
 
-        // Initially hidden
-        Hide(instant: true);
+        Debug.Log("[ActionMenuPanel] Awake() complete - initialized");
     }
 
-    private void OnEnable()
+    private void Start()
     {
+        Debug.Log("[ActionMenuPanel] Start() - subscribing to events and hiding panel");
+
+        // Subscribe to events
         ObjectSelectionManager.OnObjectFocused += ShowMenu;
         ObjectSelectionManager.OnObjectUnfocused += HideMenu;
 
@@ -59,9 +63,14 @@ public class ActionMenuPanel : MonoBehaviour
 
         if (_closeButton != null)
             _closeButton.onClick.AddListener(OnCloseClicked);
+
+        // Initially hidden (do this AFTER subscribing to events)
+        Hide(instant: true);
+
+        Debug.Log("[ActionMenuPanel] Start() complete - ready to show menu on focus");
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         ObjectSelectionManager.OnObjectFocused -= ShowMenu;
         ObjectSelectionManager.OnObjectUnfocused -= HideMenu;
@@ -80,6 +89,7 @@ public class ActionMenuPanel : MonoBehaviour
 
     public void Show()
     {
+        Debug.Log("[ActionMenuPanel] Show() called - making panel visible");
         _isVisible = true;
         gameObject.SetActive(true);
         StartCoroutine(FadeIn());
@@ -87,12 +97,14 @@ public class ActionMenuPanel : MonoBehaviour
 
     public void Hide(bool instant = false)
     {
+        Debug.Log("[ActionMenuPanel] Hide() called");
         _isVisible = false;
 
         if (instant)
         {
             _canvasGroup.alpha = 0f;
-            gameObject.SetActive(false);
+            _canvasGroup.interactable = false;
+            _canvasGroup.blocksRaycasts = false;
         }
         else
         {
@@ -104,6 +116,8 @@ public class ActionMenuPanel : MonoBehaviour
 
     private void ShowMenu(DetectedObjectData data)
     {
+        Debug.Log($"[ActionMenuPanel] ShowMenu() called for: {data.category}");
+
         _currentObject = data;
 
         // Update title and info

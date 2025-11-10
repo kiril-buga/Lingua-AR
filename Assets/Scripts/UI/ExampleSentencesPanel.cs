@@ -75,6 +75,8 @@ public class ExampleSentencesPanel : MonoBehaviour
     /// </summary>
     public void ShowExamples(string objectClass, string translation = null)
     {
+        Debug.Log($"[ExampleSentencesPanel] ShowExamples called for: '{objectClass}'");
+
         if (_sentencesDatabase == null)
         {
             Debug.LogWarning("[ExampleSentencesPanel] Sentences database not assigned");
@@ -97,9 +99,11 @@ public class ExampleSentencesPanel : MonoBehaviour
 
         // Get examples
         var examples = _sentencesDatabase.GetExamples(objectClass);
+        Debug.Log($"[ExampleSentencesPanel] Found {examples.Count} examples for '{objectClass}'");
 
         if (examples.Count == 0)
         {
+            Debug.LogWarning($"[ExampleSentencesPanel] No examples found for '{objectClass}' - check database!");
             // Show "no examples" message
             if (_noExamplesText != null)
             {
@@ -146,6 +150,7 @@ public class ExampleSentencesPanel : MonoBehaviour
 
     private void Show()
     {
+        Debug.Log("[ExampleSentencesPanel] Show() called - making panel visible");
         _isVisible = true;
         gameObject.SetActive(true);
         StartCoroutine(FadeIn());

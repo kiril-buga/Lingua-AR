@@ -38,7 +38,7 @@ public class Depth_ScreenToWorldPosition : MonoBehaviour
             _displayMatrix = args.displayMatrix.Value;
 #endif
             
-            Debug.Log("Display Matrix received and cached.");
+            //Debug.Log("Display Matrix received and cached.");
         }
     }
     
@@ -61,8 +61,6 @@ public class Depth_ScreenToWorldPosition : MonoBehaviour
             // Dispose the old image
             _depthImage?.Dispose();
             _depthImage = image;
-            
-            Debug.Log("Depth image acquired successfully.");
         }
         else
         {

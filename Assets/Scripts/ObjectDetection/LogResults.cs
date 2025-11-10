@@ -58,7 +58,7 @@ public class LogResults : MonoBehaviour
                 resultString += $"Detected: {categoryToDisplay.CategoryName}  with confidence {categoryToDisplay.Confidence} - ";
             }
             
-            Debug.Log(resultString);
+            //Debug.Log(resultString);
         }
     }
 
