@@ -86,13 +86,22 @@ public class ObjectSelectionManager : MonoBehaviour
         _focusedRectObject = rectObject;
         _focusedRectObject.SetState(UIRectObject.SelectionState.Focused);
 
-        // Create detection data
+        // Get the actual position from the RectTransform (bottom-center of the detection rectangle)
+        RectTransform rectTransform = rectObject.getRectTransform();
+        Vector2 bottomCenter = rectTransform.anchoredPosition;
+        bottomCenter.y -= rectTransform.rect.height / 2f; // Move to bottom of rectangle
+
+        Debug.Log($"[ObjectSelectionManager] Rectangle RectTransform - Position: {rectTransform.anchoredPosition}, Size: {rectTransform.rect.size}");
+        Debug.Log($"[ObjectSelectionManager] Rectangle Anchors: min={rectTransform.anchorMin}, max={rectTransform.anchorMax}, pivot={rectTransform.pivot}");
+        Debug.Log($"[ObjectSelectionManager] Calculated bottom-center: {bottomCenter}");
+
+        // Create detection data with actual RectTransform position
         FocusedObject = new DetectedObjectData
         {
             category = rectObject.Category,
             translation = rectObject.Translation,
             confidence = rectObject.Confidence,
-            screenPosition = rectObject.ScreenPosition,
+            screenPosition = bottomCenter, // Use bottom-center of the actual rectangle
             detectionTime = DateTime.Now
         };
 

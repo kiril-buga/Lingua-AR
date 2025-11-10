@@ -116,7 +116,7 @@ public class ActionMenuPanel : MonoBehaviour
 
     private void ShowMenu(DetectedObjectData data)
     {
-        Debug.Log($"[ActionMenuPanel] ShowMenu() called for: {data.category}");
+        Debug.Log($"[ActionMenuPanel] ShowMenu() called for: {data.category} at position: {data.screenPosition}");
 
         _currentObject = data;
 
@@ -148,24 +148,33 @@ public class ActionMenuPanel : MonoBehaviour
         Hide();
     }
 
-    private void PositionMenu(Vector2 objectPosition)
+    private void PositionMenu(Vector2 rectBottomCenter)
     {
-        // Calculate position with offset
-        Vector2 menuPos = objectPosition + _offsetFromObject;
+        // rectBottomCenter is in the detection rectangle's coordinate space
+        // We need to use this position directly since both UI elements share the same canvas parent
 
-        // Convert to canvas space if needed
+        // Calculate target position: place menu below the detection rectangle
+        Vector2 targetPos = rectBottomCenter + _offsetFromObject;
+
+        // Log anchor info for debugging
+        Debug.Log($"[ActionMenuPanel] Panel anchors: min={_panelTransform.anchorMin}, max={_panelTransform.anchorMax}, pivot={_panelTransform.pivot}");
+        Debug.Log($"[ActionMenuPanel] Target position before clamping: {targetPos}, offset: {_offsetFromObject}");
+
+        // Clamp to canvas bounds to ensure menu stays on screen
         if (_canvas != null)
         {
-            // Clamp to screen bounds
             RectTransform canvasRect = _canvas.GetComponent<RectTransform>();
             float halfWidth = _panelTransform.rect.width / 2f;
             float halfHeight = _panelTransform.rect.height / 2f;
 
-            menuPos.x = Mathf.Clamp(menuPos.x, halfWidth, canvasRect.rect.width - halfWidth);
-            menuPos.y = Mathf.Clamp(menuPos.y, halfHeight, canvasRect.rect.height - halfHeight);
+            // Clamp position to keep menu fully visible
+            targetPos.x = Mathf.Clamp(targetPos.x, halfWidth, canvasRect.rect.width - halfWidth);
+            targetPos.y = Mathf.Clamp(targetPos.y, halfHeight, canvasRect.rect.height - halfHeight);
+
+            Debug.Log($"[ActionMenuPanel] Final position: {targetPos} (rect at {rectBottomCenter}, canvas: {canvasRect.rect.size})");
         }
 
-        _panelTransform.anchoredPosition = menuPos;
+        _panelTransform.anchoredPosition = targetPos;
     }
 
     private System.Collections.IEnumerator FadeIn()

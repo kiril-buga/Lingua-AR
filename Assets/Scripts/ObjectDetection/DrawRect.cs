@@ -30,7 +30,8 @@ public class DrawRect : MonoBehaviour
         rectObject.SetColor(color);
 
         // Set detection metadata (for click handling)
-        rectObject.SetDetectionData(category ?? text, translatedText, confidence, rect.position);
+        // Use rect.center so ActionMenuPanel appears below the center of the detected object
+        rectObject.SetDetectionData(category ?? text, translatedText, confidence, rect.center);
 
         // Initially show only category name (not translation)
         // Translation will appear when user clicks the rectangle
