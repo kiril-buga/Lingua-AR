@@ -138,6 +138,8 @@ public class ExampleSentencesPanel : MonoBehaviour
         if (instant)
         {
             _canvasGroup.alpha = 0f;
+            _canvasGroup.interactable = false;
+            _canvasGroup.blocksRaycasts = false;
             gameObject.SetActive(false);
         }
         else
@@ -192,6 +194,10 @@ public class ExampleSentencesPanel : MonoBehaviour
 
     private System.Collections.IEnumerator FadeIn()
     {
+        // Enable interaction immediately at start of fade-in
+        _canvasGroup.interactable = true;
+        _canvasGroup.blocksRaycasts = true;
+
         float duration = 0.2f;
         float elapsed = 0f;
 
@@ -207,6 +213,10 @@ public class ExampleSentencesPanel : MonoBehaviour
 
     private System.Collections.IEnumerator FadeOut()
     {
+        // Disable interaction immediately at start of fade-out
+        _canvasGroup.interactable = false;
+        _canvasGroup.blocksRaycasts = false;
+
         float duration = 0.2f;
         float elapsed = 0f;
         float startAlpha = _canvasGroup.alpha;

@@ -88,8 +88,13 @@ public class ObjectSelectionManager : MonoBehaviour
 
         // Get the actual position from the RectTransform (bottom-center of the detection rectangle)
         RectTransform rectTransform = rectObject.getRectTransform();
+
+        // RectObject has pivot (0, 1) = top-left corner
+        // So anchoredPosition is the top-left corner
+        // To get bottom-center:
         Vector2 bottomCenter = rectTransform.anchoredPosition;
-        bottomCenter.y -= rectTransform.rect.height / 2f; // Move to bottom of rectangle
+        bottomCenter.x += rectTransform.rect.width / 2f;  // Move to horizontal center
+        bottomCenter.y -= rectTransform.rect.height;      // Move to bottom (full height down)
 
         Debug.Log($"[ObjectSelectionManager] Rectangle RectTransform - Position: {rectTransform.anchoredPosition}, Size: {rectTransform.rect.size}");
         Debug.Log($"[ObjectSelectionManager] Rectangle Anchors: min={rectTransform.anchorMin}, max={rectTransform.anchorMax}, pivot={rectTransform.pivot}");

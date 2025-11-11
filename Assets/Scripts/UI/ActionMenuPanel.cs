@@ -179,6 +179,10 @@ public class ActionMenuPanel : MonoBehaviour
 
     private System.Collections.IEnumerator FadeIn()
     {
+        // Enable interaction immediately at start of fade-in
+        _canvasGroup.interactable = true;
+        _canvasGroup.blocksRaycasts = true;
+
         float elapsed = 0f;
 
         while (elapsed < _fadeInDuration)
@@ -193,6 +197,10 @@ public class ActionMenuPanel : MonoBehaviour
 
     private System.Collections.IEnumerator FadeOut()
     {
+        // Disable interaction immediately at start of fade-out
+        _canvasGroup.interactable = false;
+        _canvasGroup.blocksRaycasts = false;
+
         float elapsed = 0f;
         float startAlpha = _canvasGroup.alpha;
 
