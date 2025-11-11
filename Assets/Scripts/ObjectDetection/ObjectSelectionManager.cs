@@ -110,13 +110,9 @@ public class ObjectSelectionManager : MonoBehaviour
             detectionTime = DateTime.Now
         };
 
-        // Update text to show translation
-        string displayText = $"{rectObject.Category}: {rectObject.Confidence:F2}";
-        if (!string.IsNullOrEmpty(rectObject.Translation))
-        {
-            displayText += $"\n{rectObject.Translation}";
-        }
-        rectObject.SetText(displayText);
+        // Update text to show only English category name
+        // (Translation and confidence are shown in ActionMenuPanel)
+        rectObject.SetText(rectObject.Category);
 
         // Hide all other rectangles except the focused one
         if (_drawRect != null)
