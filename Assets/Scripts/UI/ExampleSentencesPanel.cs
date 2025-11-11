@@ -122,6 +122,13 @@ public class ExampleSentencesPanel : MonoBehaviour
             {
                 CreateSentenceItem(example);
             }
+
+            // Force layout rebuild to ensure proper positioning
+            Canvas.ForceUpdateCanvases();
+            if (_sentencesContainer != null)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(_sentencesContainer as RectTransform);
+            }
         }
 
         // Show panel
@@ -166,6 +173,15 @@ public class ExampleSentencesPanel : MonoBehaviour
         GameObject item = Instantiate(_sentenceItemPrefab, _sentencesContainer);
         _sentenceItems.Add(item);
 
+        // Reset RectTransform to ensure proper layout
+        RectTransform rectTransform = item.GetComponent<RectTransform>();
+        if (rectTransform != null)
+        {
+            rectTransform.localScale = Vector3.one;
+            rectTransform.localPosition = Vector3.zero;
+            rectTransform.localRotation = Quaternion.identity;
+        }
+
         // Find text components (assumes prefab has two TMP_Text children)
         TMP_Text[] texts = item.GetComponentsInChildren<TMP_Text>();
         if (texts.Length >= 2)
@@ -179,6 +195,8 @@ public class ExampleSentencesPanel : MonoBehaviour
         }
 
         item.SetActive(true);
+
+        Debug.Log($"[ExampleSentencesPanel] Created sentence item: '{example.englishSentence}'");
     }
 
     private void ClearSentences()

@@ -19,7 +19,7 @@ public class ObjectDetectionSample : MonoBehaviour
         Color.seaGreen,
         Color.yellowNice,
         Color.magenta,
-        Color.cyan,
+        //Color.cyan,
         Color.white,
         Color.azure,
         Color.coral,
