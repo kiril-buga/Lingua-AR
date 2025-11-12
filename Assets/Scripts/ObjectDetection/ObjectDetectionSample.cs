@@ -45,6 +45,11 @@ public class ObjectDetectionSample : MonoBehaviour
     private void Awake()
     {
         _canvas = FindAnyObjectByType<Canvas>();
+
+        if (_canvas == null)
+        {
+            Debug.LogError("[ObjectDetectionSample] Canvas not found in scene! UI rectangles will not display correctly.");
+        }
     }
     
     
@@ -83,10 +88,16 @@ public class ObjectDetectionSample : MonoBehaviour
         float confidence = 0;
         string name = "";
         var result = obj.Results;
-        
+
         if(result == null)
             return;
-        
+
+        if (_canvas == null)
+        {
+            Debug.LogError("[ObjectDetectionSample] Canvas is null, cannot process detections.");
+            return;
+        }
+
         _drawRect.ClearRects();
 
         for (int i = 0; i < result.Count; i++)

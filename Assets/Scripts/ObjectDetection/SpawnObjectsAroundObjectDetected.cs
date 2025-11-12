@@ -17,10 +17,18 @@ public class SpawnObjectsAroundObjectDetected : MonoBehaviour
     private LayerMask meshLayer;
     private Ray debugRay;
     
-    public static SpawnObjectsAroundObjectDetected Instance;
+    public static SpawnObjectsAroundObjectDetected Instance { get; private set; }
 
     private void Awake()
     {
+        // Singleton pattern - destroy duplicate instances
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("[SpawnObjectsAroundObjectDetected] Duplicate instance detected, destroying new one");
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
     }
 
@@ -57,9 +65,26 @@ public class SpawnObjectsAroundObjectDetected : MonoBehaviour
     {
         meshLayer = LayerMask.NameToLayer("ARMesh");
         mainCamera = FindAnyObjectByType<Camera>();
-        
+
+        if (mainCamera == null)
+        {
+            Debug.LogError("[SpawnObjectsAroundObjectDetected] Camera not found in scene! Object spawning may not work correctly.");
+        }
+
         ObjectDetectionSample.OnFoundItemAtPosition += ObjectDetectionSampleOnOnFoundItemAtPosition;
         delay = new WaitForSeconds(timer);
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe from events to prevent memory leaks
+        ObjectDetectionSample.OnFoundItemAtPosition -= ObjectDetectionSampleOnOnFoundItemAtPosition;
+
+        // Clear singleton reference
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 
     private void ObjectDetectionSampleOnOnFoundItemAtPosition((string category, Vector2 rectPosition) objectDetectedAt)

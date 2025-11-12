@@ -25,6 +25,16 @@ public class Depth_ScreenToWorldPosition : MonoBehaviour
     private void OnDisable()
     {
         _arCameraManager.frameReceived -= OnCameraFrameEventReceived;
+
+        // Dispose depth image to prevent memory leak
+        _depthImage?.Dispose();
+        _depthImage = null;
+    }
+
+    private void OnDestroy()
+    {
+        // Ensure depth image is disposed when component is destroyed
+        _depthImage?.Dispose();
     }
     
     private void OnCameraFrameEventReceived(ARCameraFrameEventArgs args)
