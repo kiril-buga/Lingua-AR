@@ -23,6 +23,7 @@ public class ExampleSentencesPanel : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private ExampleSentencesDatabaseSO _sentencesDatabase;
+    [SerializeField] private LanguageSettings _languageSettings;
 
     // ===== PRIVATE FIELDS =====
     private List<GameObject> _sentenceItems = new List<GameObject>();
@@ -184,14 +185,19 @@ public class ExampleSentencesPanel : MonoBehaviour
 
         // Find text components (assumes prefab has two TMP_Text children)
         TMP_Text[] texts = item.GetComponentsInChildren<TMP_Text>();
+
+        // Get the current target language from settings
+        TargetLanguage currentLanguage = _languageSettings != null ? _languageSettings.CurrentLanguage : TargetLanguage.Italian;
+        string translatedText = example.GetTranslation(currentLanguage);
+
         if (texts.Length >= 2)
         {
             texts[0].text = example.englishSentence;
-            texts[1].text = example.translatedSentence;
+            texts[1].text = translatedText;
         }
         else if (texts.Length == 1)
         {
-            texts[0].text = $"{example.englishSentence}\n\n{example.translatedSentence}";
+            texts[0].text = $"{example.englishSentence}\n\n{translatedText}";
         }
 
         item.SetActive(true);

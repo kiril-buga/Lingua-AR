@@ -14,11 +14,32 @@ public class ExampleSentencesDatabaseSO : ScriptableObject
         [Tooltip("Original sentence in English")]
         public string englishSentence;
 
-        [Tooltip("Translated sentence in target language")]
-        public string translatedSentence;
+        [Tooltip("Italian translation")]
+        public string italianSentence;
+
+        [Tooltip("German translation")]
+        public string germanSentence;
+
+        [Tooltip("French translation")]
+        public string frenchSentence;
 
         [Tooltip("Source attribution (optional)")]
-        public string source = "Tatoeba";
+        public string source = "Manual";
+
+        /// <summary>
+        /// Gets the translation for the specified language.
+        /// </summary>
+        public string GetTranslation(TargetLanguage language)
+        {
+            return language switch
+            {
+                TargetLanguage.Italian => italianSentence,
+                TargetLanguage.German => germanSentence,
+                TargetLanguage.French => frenchSentence,
+                TargetLanguage.English => englishSentence,
+                _ => englishSentence
+            };
+        }
     }
 
     [System.Serializable]
