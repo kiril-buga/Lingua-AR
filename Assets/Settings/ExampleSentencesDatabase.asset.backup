@@ -1,0 +1,275 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac29e45f5483d1746889ce1e85266196, type: 3}
+  m_Name: ExampleSentencesDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::ExampleSentencesDatabaseSO
+  _wordExamples:
+  - objectClass: backpack
+    examples:
+    - englishSentence: I packed my backpack for the hiking trip.
+      translatedSentence: Ho preparato il mio zaino per l'escursione.
+      source: Manual
+    - englishSentence: Don't forget your backpack at school.
+      translatedSentence: Non dimenticare lo zaino a scuola.
+      source: Manual
+  - objectClass: bed
+    examples:
+    - englishSentence: I need to make my bed before breakfast.
+      translatedSentence: Devo rifare il letto prima di colazione.
+      source: Manual
+    - englishSentence: The bed is very comfortable.
+      translatedSentence: Il letto è molto comodo.
+      source: Manual
+    - englishSentence: She went to bed early last night.
+      translatedSentence: Lei è andata a letto presto ieri sera.
+      source: Manual
+  - objectClass: bicycle
+    examples:
+    - englishSentence: I ride my bicycle to work every day.
+      translatedSentence: Vado al lavoro in bicicletta ogni giorno.
+      source: Manual
+    - englishSentence: My bicycle has a flat tire.
+      translatedSentence: La mia bicicletta ha una gomma a terra.
+      source: Manual
+  - objectClass: book
+    examples:
+    - englishSentence: I'm reading a fascinating book about history.
+      translatedSentence: Sto leggendo un libro affascinante sulla storia.
+      source: Manual
+    - englishSentence: Can you return this book to the library?
+      translatedSentence: Puoi restituire questo libro alla biblioteca?
+      source: Manual
+    - englishSentence: The book is on the table.
+      translatedSentence: Il libro è sul tavolo.
+      source: Manual
+  - objectClass: bottle
+    examples:
+    - englishSentence: Please bring me a bottle of water.
+      translatedSentence: Per favore portami una bottiglia d'acqua.
+      source: Manual
+    - englishSentence: The bottle is made of glass.
+      translatedSentence: La bottiglia è di vetro.
+      source: Manual
+  - objectClass: car
+    examples:
+    - englishSentence: My car is parked outside.
+      translatedSentence: La mia macchina è parcheggiata fuori.
+      source: Manual
+    - englishSentence: We need to wash the car this weekend.
+      translatedSentence: Dobbiamo lavare la macchina questo fine settimana.
+      source: Manual
+  - objectClass: cat
+    examples:
+    - englishSentence: The cat is sleeping on the sofa.
+      translatedSentence: Il gatto sta dormendo sul divano.
+      source: Manual
+    - englishSentence: My cat loves to play with yarn.
+      translatedSentence: Al mio gatto piace giocare con la lana.
+      source: Manual
+  - objectClass: chair
+    examples:
+    - englishSentence: Please sit on the chair.
+      translatedSentence: Si prega di sedersi sulla sedia.
+      source: Manual
+    - englishSentence: The chair is comfortable.
+      translatedSentence: La sedia è comoda.
+      source: Manual
+    - englishSentence: I need a new office chair.
+      translatedSentence: Ho bisogno di una nuova sedia da ufficio.
+      source: Manual
+  - objectClass: clock
+    examples:
+    - englishSentence: The clock shows it's already noon.
+      translatedSentence: L'orologio mostra che è già mezzogiorno.
+      source: Manual
+    - englishSentence: I forgot to set my alarm clock.
+      translatedSentence: Ho dimenticato di impostare la sveglia.
+      source: Manual
+  - objectClass: computer
+    examples:
+    - englishSentence: I work on my computer all day.
+      translatedSentence: Lavoro al computer tutto il giorno.
+      source: Manual
+    - englishSentence: The computer needs to be restarted.
+      translatedSentence: Il computer deve essere riavviato.
+      source: Manual
+  - objectClass: couch
+    examples:
+    - englishSentence: Let's sit on the couch and watch a movie.
+      translatedSentence: Sediamoci sul divano e guardiamo un film.
+      source: Manual
+    - englishSentence: The couch is really comfortable.
+      translatedSentence: Il divano è davvero comodo.
+      source: Manual
+  - objectClass: cup
+    examples:
+    - englishSentence: Can I have a cup of coffee?
+      translatedSentence: Posso avere una tazza di caffè?
+      source: Manual
+    - englishSentence: The cup is on the table.
+      translatedSentence: La tazza è sul tavolo.
+      source: Manual
+    - englishSentence: Be careful, the cup is hot.
+      translatedSentence: Attento, la tazza è calda.
+      source: Manual
+  - objectClass: desk
+    examples:
+    - englishSentence: My desk is very messy today.
+      translatedSentence: La mia scrivania è molto disordinata oggi.
+      source: Manual
+    - englishSentence: Please put the documents on my desk.
+      translatedSentence: Per favore metti i documenti sulla mia scrivania.
+      source: Manual
+  - objectClass: dog
+    examples:
+    - englishSentence: I take my dog for a walk every morning.
+      translatedSentence: Porto il mio cane a passeggio ogni mattina.
+      source: Manual
+    - englishSentence: The dog is barking at the mailman.
+      translatedSentence: Il cane sta abbaiando al postino.
+      source: Manual
+  - objectClass: door
+    examples:
+    - englishSentence: Please close the door behind you.
+      translatedSentence: Per favore chiudi la porta dietro di te.
+      source: Manual
+    - englishSentence: Someone is knocking at the door.
+      translatedSentence: Qualcuno sta bussando alla porta.
+      source: Manual
+  - objectClass: keyboard
+    examples:
+    - englishSentence: I need a new keyboard for my computer.
+      translatedSentence: Ho bisogno di una nuova tastiera per il mio computer.
+      source: Manual
+    - englishSentence: The keyboard is not working properly.
+      translatedSentence: La tastiera non funziona correttamente.
+      source: Manual
+  - objectClass: lamp
+    examples:
+    - englishSentence: Turn on the lamp, please.
+      translatedSentence: Accendi la lampada, per favore.
+      source: Manual
+    - englishSentence: I bought a new lamp for the living room.
+      translatedSentence: Ho comprato una nuova lampada per il soggiorno.
+      source: Manual
+    - englishSentence: The lamp is very bright.
+      translatedSentence: La lampada è molto luminosa.
+      source: Manual
+  - objectClass: laptop
+    examples:
+    - englishSentence: I bring my laptop to the office every day.
+      translatedSentence: Porto il mio portatile in ufficio ogni giorno.
+      source: Manual
+    - englishSentence: My laptop battery is almost dead.
+      translatedSentence: La batteria del mio portatile è quasi scarica.
+      source: Manual
+  - objectClass: mirror
+    examples:
+    - englishSentence: I checked my appearance in the mirror.
+      translatedSentence: Ho controllato il mio aspetto allo specchio.
+      source: Manual
+    - englishSentence: The mirror on the wall is beautiful.
+      translatedSentence: Lo specchio sul muro è bellissimo.
+      source: Manual
+  - objectClass: mouse
+    examples:
+    - englishSentence: My computer mouse is wireless.
+      translatedSentence: Il mio mouse del computer è senza fili.
+      source: Manual
+    - englishSentence: The mouse stopped working suddenly.
+      translatedSentence: Il mouse ha smesso di funzionare improvvisamente.
+      source: Manual
+  - objectClass: phone
+    examples:
+    - englishSentence: I left my phone at home.
+      translatedSentence: Ho lasciato il mio telefono a casa.
+      source: Manual
+    - englishSentence: Can you answer the phone?
+      translatedSentence: Puoi rispondere al telefono?
+      source: Manual
+    - englishSentence: My phone battery is low.
+      translatedSentence: La batteria del mio telefono è scarica.
+      source: Manual
+  - objectClass: plant
+    examples:
+    - englishSentence: I need to water the plant.
+      translatedSentence: Devo annaffiare la pianta.
+      source: Manual
+    - englishSentence: The plant is growing beautifully.
+      translatedSentence: La pianta sta crescendo magnificamente.
+      source: Manual
+  - objectClass: screen
+    examples:
+    - englishSentence: I accidentally cracked the screen of my phone when it fell
+        on the floor.
+      translatedSentence: Ho rotto per sbaglio lo schermo del mio telefono quando
+        è caduto per terra.
+      source: Manual
+    - englishSentence: The movie was projected onto a huge screen in the outdoor
+        cinema.
+      translatedSentence: Il film è stato proiettato su un grande schermo nel cinema
+        all'aperto.
+      source: Manual
+    - englishSentence: The computer screen is too bright.
+      translatedSentence: Lo schermo del computer è troppo luminoso.
+      source: Manual
+  - objectClass: sofa
+    examples:
+    - englishSentence: The sofa in the living room is very comfortable.
+      translatedSentence: Il divano nel soggiorno è molto comodo.
+      source: Manual
+    - englishSentence: We bought a new sofa last week.
+      translatedSentence: Abbiamo comprato un nuovo divano la settimana scorsa.
+      source: Manual
+  - objectClass: table
+    examples:
+    - englishSentence: Set the table for dinner, please.
+      translatedSentence: Apparecchia la tavola per cena, per favore.
+      source: Manual
+    - englishSentence: The table is made of solid wood.
+      translatedSentence: Il tavolo è fatto di legno massello.
+      source: Manual
+    - englishSentence: Put the vase on the table.
+      translatedSentence: Metti il vaso sul tavolo.
+      source: Manual
+  - objectClass: television
+    examples:
+    - englishSentence: We watch television every evening.
+      translatedSentence: Guardiamo la televisione ogni sera.
+      source: Manual
+    - englishSentence: The television is broken.
+      translatedSentence: La televisione è rotta.
+      source: Manual
+  - objectClass: tv
+    examples:
+    - englishSentence: Turn off the TV before going to bed.
+      translatedSentence: Spegni la TV prima di andare a letto.
+      source: Manual
+    - englishSentence: There's nothing good on TV tonight.
+      translatedSentence: Non c'è niente di buono in TV stasera.
+      source: Manual
+  - objectClass: umbrella
+    examples:
+    - englishSentence: Don't forget to bring an umbrella, it might rain.
+      translatedSentence: Non dimenticare di portare un ombrello, potrebbe piovere.
+      source: Manual
+    - englishSentence: I left my umbrella on the bus.
+      translatedSentence: Ho lasciato il mio ombrello sull'autobus.
+      source: Manual
+  - objectClass: window
+    examples:
+    - englishSentence: Open the window to let fresh air in.
+      translatedSentence: Apri la finestra per far entrare aria fresca.
+      source: Manual
+    - englishSentence: The window is dirty and needs cleaning.
+      translatedSentence: La finestra è sporca e deve essere pulita.
+      source: Manual
