@@ -28,6 +28,7 @@ public class VocabularyListPanel : MonoBehaviour
 
     [Header("Detection Control")]
     [SerializeField] private ObjectDetectionSample _objectDetection;
+    [SerializeField] private DrawRect _drawRect;
 
     // ===== PRIVATE FIELDS =====
     private List<VocabularyWordItem> _wordItems = new List<VocabularyWordItem>();
@@ -84,10 +85,15 @@ public class VocabularyListPanel : MonoBehaviour
     {
         Debug.Log("[VocabularyListPanel] Showing panel");
 
-        // Pause object detection while viewing vocabulary
+        // Pause object detection and clear UI rectangles
         if (_objectDetection != null)
         {
             _objectDetection.Pause();
+        }
+
+        if (_drawRect != null)
+        {
+            _drawRect.ClearRects();  // Hide all detection rectangles
         }
 
         RefreshList();
