@@ -191,22 +191,24 @@ public class ExampleSentencesPanel : MonoBehaviour
         TMP_Text[] texts = item.GetComponentsInChildren<TMP_Text>();
 
         // Get the current target language from settings
+        TargetLanguage sourceLanguage = _languageSettings != null ? _languageSettings.CurrentSourceLanguage : TargetLanguage.English;
         TargetLanguage currentLanguage = _languageSettings != null ? _languageSettings.CurrentLanguage : TargetLanguage.Italian;
+        string sourceText = example.GetTranslation(sourceLanguage);
         string translatedText = example.GetTranslation(currentLanguage);
 
         if (texts.Length >= 2)
         {
-            texts[0].text = example.englishSentence;
+            texts[0].text = sourceText;
             texts[1].text = translatedText;
         }
         else if (texts.Length == 1)
         {
-            texts[0].text = $"{example.englishSentence}\n\n{translatedText}";
+            texts[0].text = $"{sourceText}\n\n{translatedText}";
         }
 
         item.SetActive(true);
 
-        Debug.Log($"[ExampleSentencesPanel] Created sentence item: '{example.englishSentence}'");
+        Debug.Log($"[ExampleSentencesPanel] Created sentence item: '{sourceText}'");
     }
 
     private void ClearSentences()
