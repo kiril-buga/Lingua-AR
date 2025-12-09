@@ -112,8 +112,8 @@ public class ObjectSelectionManager : MonoBehaviour
         };
 
         // Update text to show source translation (if available), otherwise show category name
-        string displayText = !string.IsNullOrEmpty(rectObject.SourceTranslation)
-            ? rectObject.SourceTranslation
+        string displayText = !string.IsNullOrEmpty(rectObject.Translation)
+            ? rectObject.Translation
             : rectObject.Category;
         rectObject.SetText(displayText);
 
