@@ -29,6 +29,7 @@ public class UIRectObject : MonoBehaviour, IPointerClickHandler
     public SelectionState CurrentState { get; private set; } = SelectionState.Normal;
     public string Category { get; private set; }
     public string Translation { get; private set; }
+    public string SourceTranslation { get; private set; }
     public float Confidence { get; private set; }
     public Vector2 ScreenPosition { get; private set; }
 
@@ -52,10 +53,11 @@ public class UIRectObject : MonoBehaviour, IPointerClickHandler
     /// <summary>
     /// Sets all detection metadata for this rectangle.
     /// </summary>
-    public void SetDetectionData(string category, string translation, float confidence, Vector2 screenPos)
+    public void SetDetectionData(string category, string translation, float confidence, Vector2 screenPos, string sourceTranslation = null)
     {
         Category = category;
         Translation = translation;
+        SourceTranslation = sourceTranslation;
         Confidence = confidence;
         ScreenPosition = screenPos;
     }

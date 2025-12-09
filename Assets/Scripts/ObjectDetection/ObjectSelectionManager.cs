@@ -105,14 +105,17 @@ public class ObjectSelectionManager : MonoBehaviour
         {
             category = rectObject.Category,
             translation = rectObject.Translation,
+            sourceTranslation = rectObject.SourceTranslation,
             confidence = rectObject.Confidence,
             screenPosition = bottomCenter, // Use bottom-center of the actual rectangle
             detectionTime = DateTime.Now
         };
 
-        // Update text to show only English category name
-        // (Translation and confidence are shown in ActionMenuPanel)
-        rectObject.SetText(rectObject.Category);
+        // Update text to show source translation (if available), otherwise show category name
+        string displayText = !string.IsNullOrEmpty(rectObject.SourceTranslation)
+            ? rectObject.SourceTranslation
+            : rectObject.Category;
+        rectObject.SetText(displayText);
 
         // Hide all other rectangles except the focused one
         if (_drawRect != null)
@@ -183,6 +186,7 @@ public class DetectedObjectData
 {
     public string category;
     public string translation;
+    public string sourceTranslation;
     public float confidence;
     public Vector2 screenPosition;
     public DateTime detectionTime;

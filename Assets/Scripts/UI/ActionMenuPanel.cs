@@ -131,7 +131,12 @@ public class ActionMenuPanel : MonoBehaviour
         // Update title and info
         if (_titleText != null)
         {
+            // Display both source and target translations if available
             string displayText = $"{data.category}";
+            if (!string.IsNullOrEmpty(data.sourceTranslation))
+            {
+                displayText = $"{data.sourceTranslation}";
+            }
             if (!string.IsNullOrEmpty(data.translation))
             {
                 displayText += $" → {data.translation}";
@@ -264,7 +269,7 @@ public class ActionMenuPanel : MonoBehaviour
         // Show example sentences panel
         if (ExampleSentencesPanel.Instance != null)
         {
-            ExampleSentencesPanel.Instance.ShowExamples(_currentObject.category, _currentObject.translation);
+            ExampleSentencesPanel.Instance.ShowExamples(_currentObject.category, _currentObject.translation, _currentObject.sourceTranslation);
         }
         else
         {
@@ -280,7 +285,7 @@ public class ActionMenuPanel : MonoBehaviour
             return;
         }
 
-        Debug.Log($"[ActionMenuPanel] Saving word: {_currentObject.category} ({_currentObject.translation})");
+        Debug.Log($"[ActionMenuPanel] Saving word: {_currentObject.category} ({_currentObject.sourceTranslation} → {_currentObject.translation})");
 
         // Save word via VocabularyManager
         if (VocabularyManager.Instance != null && _languageSettings != null)
@@ -288,7 +293,9 @@ public class ActionMenuPanel : MonoBehaviour
             VocabularyManager.Instance.SaveWord(
                 _currentObject.category,
                 _currentObject.translation,
-                _languageSettings.CurrentLanguage
+                _languageSettings.CurrentLanguage,
+                _currentObject.sourceTranslation,
+                _languageSettings.CurrentSourceLanguage
             );
 
             // Hide save button after saving

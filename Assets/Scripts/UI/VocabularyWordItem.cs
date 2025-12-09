@@ -22,9 +22,17 @@ public class VocabularyWordItem : MonoBehaviour
         _word = word;
         _onDeleteCallback = onDeleteCallback;
 
-        // Set texts
+        // Set texts - display source → target language format
         _categoryText.text = word.category;
-        _translationText.text = $"{word.savedTranslation} ({GetLanguageName(word.savedLanguage)})";
+        
+        // Build translation text with both source and target languages
+        string translationDisplay = word.savedTranslation;
+        if (!string.IsNullOrEmpty(word.sourceTranslation))
+        {
+            translationDisplay = $"{word.sourceTranslation} → {word.savedTranslation}";
+        }
+        _translationText.text = $"{translationDisplay} ({GetLanguageName(word.savedLanguage)})";
+        
         _dateText.text = $"Saved {GetTimeAgo(word.FirstDetectedDateTime)}";
 
         // Setup delete button

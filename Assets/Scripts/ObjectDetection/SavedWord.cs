@@ -3,14 +3,16 @@ using System;
 [Serializable]
 public class SavedWord
 {
-    public string category;              // English name (e.g., "chair")
-    public string savedTranslation;      // Translation at time of first detection
-    public TargetLanguage savedLanguage; // Language when first detected
+    public string category;                  // English name (e.g., "chair")
+    public string savedTranslation;          // Target language translation at time of first detection
+    public TargetLanguage savedLanguage;     // Target language when first detected
+    public string sourceTranslation;         // Source language translation
+    public TargetLanguage sourceLanguage;    // Source language
 
     // Store as ISO 8601 strings for JsonUtility compatibility
-    public string firstDetectedTime;     // When first detected
-    public string lastSeenTime;          // Most recent detection
-    public int timesDetected;            // How many times seen
+    public string firstDetectedTime;         // When first detected
+    public string lastSeenTime;              // Most recent detection
+    public int timesDetected;                // How many times seen
 
     // Helper properties to work with DateTime
     public DateTime FirstDetectedDateTime
@@ -25,11 +27,13 @@ public class SavedWord
         set => lastSeenTime = value.ToString("o");
     }
 
-    public SavedWord(string category, string translation, TargetLanguage language)
+    public SavedWord(string category, string translation, TargetLanguage language, string sourceTranslation = null, TargetLanguage sourceLanguage = TargetLanguage.English)
     {
         this.category = category;
         this.savedTranslation = translation;
         this.savedLanguage = language;
+        this.sourceTranslation = sourceTranslation;
+        this.sourceLanguage = sourceLanguage;
         this.firstDetectedTime = DateTime.Now.ToString("o");
         this.lastSeenTime = DateTime.Now.ToString("o");
         this.timesDetected = 1;

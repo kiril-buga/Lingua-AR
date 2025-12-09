@@ -74,7 +74,7 @@ public class ExampleSentencesPanel : MonoBehaviour
     /// <summary>
     /// Shows example sentences for the given word.
     /// </summary>
-    public void ShowExamples(string objectClass, string translation = null)
+    public void ShowExamples(string objectClass, string translation = null, string nativeTranslation = null)
     {
         Debug.Log($"[ExampleSentencesPanel] ShowExamples called for: '{objectClass}'");
 
@@ -91,6 +91,10 @@ public class ExampleSentencesPanel : MonoBehaviour
         if (_titleText != null)
         {
             string title = $"Examples: {objectClass}";
+            if (!string.IsNullOrEmpty(nativeTranslation))
+            {
+                title = $"Examples: {nativeTranslation}";
+            }
             if (!string.IsNullOrEmpty(translation))
             {
                 title += $" ({translation})";

@@ -32,15 +32,15 @@ public class VocabularyManager : MonoBehaviour
         }
     }
 
-    public void SaveWord(string category, string translation, TargetLanguage language)
+    public void SaveWord(string category, string translation, TargetLanguage language, string sourceTranslation = null, TargetLanguage sourceLanguage = TargetLanguage.English)
     {
         SavedWord word;
         bool isNewWord = !_vocabulary.Contains(category);
 
         if (isNewWord)
         {
-            word = new SavedWord(category, translation, language);
-            Debug.Log($"[VocabularyManager] Saving new word: {category} ({translation})");
+            word = new SavedWord(category, translation, language, sourceTranslation, sourceLanguage);
+            Debug.Log($"[VocabularyManager] Saving new word: {category} ({sourceTranslation} → {translation})");
         }
         else
         {

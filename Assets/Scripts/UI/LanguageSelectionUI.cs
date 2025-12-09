@@ -15,6 +15,8 @@ public class LanguageSelectionUI : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private TMP_Dropdown _languageDropdown;
     [SerializeField] private TMP_Text _currentLanguageText;
+    [SerializeField] private TMP_Dropdown _sourceLanguageDropdown;
+    [SerializeField] private TMP_Text _currentSourceLanguageText;
 
     [Header("Optional: Individual Language Buttons")]
     [SerializeField] private Button _englishButton;
@@ -39,6 +41,12 @@ public class LanguageSelectionUI : MonoBehaviour
             SetupDropdown();
         }
 
+        // Setup source language dropdown if present
+        if (_sourceLanguageDropdown != null)
+        {
+            SetupSourceLanguageDropdown();
+        }
+
         // Setup individual buttons if present
         SetupButtons();
 
@@ -47,11 +55,13 @@ public class LanguageSelectionUI : MonoBehaviour
 
         // Subscribe to language change events
         LanguageSettings.OnLanguageChanged += OnLanguageChanged;
+        LanguageSettings.OnSourceLanguageChanged += OnSourceLanguageChanged;
     }
 
     private void OnDestroy()
     {
         LanguageSettings.OnLanguageChanged -= OnLanguageChanged;
+        LanguageSettings.OnSourceLanguageChanged -= OnSourceLanguageChanged;
     }
 
     private void SetupDropdown()
@@ -67,6 +77,21 @@ public class LanguageSelectionUI : MonoBehaviour
         _languageDropdown.AddOptions(options);
         _languageDropdown.value = (int)_languageSettings.CurrentLanguage;
         _languageDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
+    }
+
+    private void SetupSourceLanguageDropdown()
+    {
+        _sourceLanguageDropdown.ClearOptions();
+
+        var options = new System.Collections.Generic.List<TMP_Dropdown.OptionData>();
+        options.Add(new TMP_Dropdown.OptionData(LanguageSettings.GetLanguageDisplayName(TargetLanguage.English)));
+        options.Add(new TMP_Dropdown.OptionData(LanguageSettings.GetLanguageDisplayName(TargetLanguage.French)));
+        options.Add(new TMP_Dropdown.OptionData(LanguageSettings.GetLanguageDisplayName(TargetLanguage.German)));
+        options.Add(new TMP_Dropdown.OptionData(LanguageSettings.GetLanguageDisplayName(TargetLanguage.Italian)));
+
+        _sourceLanguageDropdown.AddOptions(options);
+        _sourceLanguageDropdown.value = (int)_languageSettings.CurrentSourceLanguage;
+        _sourceLanguageDropdown.onValueChanged.AddListener(OnSourceLanguageDropdownValueChanged);
     }
 
     private void SetupButtons()
@@ -89,15 +114,57 @@ public class LanguageSelectionUI : MonoBehaviour
         SetLanguage((TargetLanguage)index);
     }
 
+    private void OnSourceLanguageDropdownValueChanged(int index)
+    {
+        SetSourceLanguage((TargetLanguage)index);
+    }
+
     private void SetLanguage(TargetLanguage language)
     {
+        // Prevent target and source from being the same
+        if (language == _languageSettings.CurrentSourceLanguage)
+        {
+            Debug.LogWarning($"[LanguageSelectionUI] Cannot set target language to {language} - it's already the source language.");
+
+            // Reset dropdown to previous valid value
+            if (_languageDropdown != null)
+            {
+                _languageDropdown.SetValueWithoutNotify((int)_languageSettings.CurrentLanguage);
+            }
+            return;
+        }
+
         _languageSettings.CurrentLanguage = language;
         Debug.Log($"[LanguageSelectionUI] Language set to: {language}");
+    }
+
+    private void SetSourceLanguage(TargetLanguage language)
+    {
+        // Prevent source and target from being the same
+        if (language == _languageSettings.CurrentLanguage)
+        {
+            Debug.LogWarning($"[LanguageSelectionUI] Cannot set source language to {language} - it's already the target language.");
+
+            // Reset dropdown to previous valid value
+            if (_sourceLanguageDropdown != null)
+            {
+                _sourceLanguageDropdown.SetValueWithoutNotify((int)_languageSettings.CurrentSourceLanguage);
+            }
+            return;
+        }
+
+        _languageSettings.CurrentSourceLanguage = language;
+        Debug.Log($"[LanguageSelectionUI] Source language set to: {language}");
     }
 
     private void OnLanguageChanged(TargetLanguage newLanguage)
     {
         UpdateUI();
+    }
+
+    private void OnSourceLanguageChanged(TargetLanguage newSourceLanguage)
+    {
+        UpdateSourceLanguageUI();
     }
 
     private void UpdateUI()
@@ -114,8 +181,26 @@ public class LanguageSelectionUI : MonoBehaviour
             _languageDropdown.value = (int)_languageSettings.CurrentLanguage;
         }
 
+        // Update source language UI as well
+        UpdateSourceLanguageUI();
+
         // Highlight selected button
         HighlightSelectedButton();
+    }
+
+    private void UpdateSourceLanguageUI()
+    {
+        if (_currentSourceLanguageText != null)
+        {
+            string flag = LanguageSettings.GetLanguageFlag(_languageSettings.CurrentSourceLanguage);
+            string name = LanguageSettings.GetLanguageDisplayName(_languageSettings.CurrentSourceLanguage);
+            _currentSourceLanguageText.text = $"{flag} {name}";
+        }
+
+        if (_sourceLanguageDropdown != null)
+        {
+            _sourceLanguageDropdown.SetValueWithoutNotify((int)_languageSettings.CurrentSourceLanguage);
+        }
     }
 
     private void HighlightSelectedButton()

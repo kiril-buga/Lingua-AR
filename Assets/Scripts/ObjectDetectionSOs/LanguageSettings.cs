@@ -12,11 +12,21 @@ public class LanguageSettings : ScriptableObject
     [Tooltip("Currently selected target language for translations and TTS")]
     private TargetLanguage _currentLanguage = TargetLanguage.Italian;
 
+    [SerializeField]
+    [Tooltip("Currently selected source language (the language you speak)")]
+    private TargetLanguage _currentSourceLanguage = TargetLanguage.English;
+
     /// <summary>
     /// Event fired when the language is changed.
     /// Subscribe to this to update UI or reload translations.
     /// </summary>
     public static event Action<TargetLanguage> OnLanguageChanged;
+
+    /// <summary>
+    /// Event fired when the source language is changed.
+    /// Subscribe to this to update UI or reload source translations.
+    /// </summary>
+    public static event Action<TargetLanguage> OnSourceLanguageChanged;
 
     /// <summary>
     /// Gets or sets the current target language.
@@ -32,6 +42,24 @@ public class LanguageSettings : ScriptableObject
                 SaveLanguagePreference();
                 OnLanguageChanged?.Invoke(_currentLanguage);
                 Debug.Log($"[LanguageSettings] Language changed to: {_currentLanguage}");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the current source language (language you speak).
+    /// </summary>
+    public TargetLanguage CurrentSourceLanguage
+    {
+        get => _currentSourceLanguage;
+        set
+        {
+            if (_currentSourceLanguage != value)
+            {
+                _currentSourceLanguage = value;
+                SaveSourceLanguagePreference();
+                OnSourceLanguageChanged?.Invoke(_currentSourceLanguage);
+                Debug.Log($"[LanguageSettings] Source language changed to: {_currentSourceLanguage}");
             }
         }
     }
@@ -103,7 +131,8 @@ public class LanguageSettings : ScriptableObject
     public void Initialize()
     {
         LoadLanguagePreference();
-        Debug.Log($"[LanguageSettings] Initialized with language: {_currentLanguage}");
+        LoadSourceLanguagePreference();
+        Debug.Log($"[LanguageSettings] Initialized - Target: {_currentLanguage}, Source: {_currentSourceLanguage}");
     }
 
     /// <summary>
@@ -116,6 +145,15 @@ public class LanguageSettings : ScriptableObject
     }
 
     /// <summary>
+    /// Saves the current source language preference to PlayerPrefs.
+    /// </summary>
+    private void SaveSourceLanguagePreference()
+    {
+        PlayerPrefs.SetInt("LinguaAR_SourceLanguage", (int)_currentSourceLanguage);
+        PlayerPrefs.Save();
+    }
+
+    /// <summary>
     /// Loads the language preference from PlayerPrefs.
     /// </summary>
     private void LoadLanguagePreference()
@@ -123,6 +161,17 @@ public class LanguageSettings : ScriptableObject
         if (PlayerPrefs.HasKey("LinguaAR_TargetLanguage"))
         {
             _currentLanguage = (TargetLanguage)PlayerPrefs.GetInt("LinguaAR_TargetLanguage");
+        }
+    }
+
+    /// <summary>
+    /// Loads the source language preference from PlayerPrefs.
+    /// </summary>
+    private void LoadSourceLanguagePreference()
+    {
+        if (PlayerPrefs.HasKey("LinguaAR_SourceLanguage"))
+        {
+            _currentSourceLanguage = (TargetLanguage)PlayerPrefs.GetInt("LinguaAR_SourceLanguage");
         }
     }
 

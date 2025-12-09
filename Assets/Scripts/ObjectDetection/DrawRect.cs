@@ -10,7 +10,7 @@ public class DrawRect : MonoBehaviour
     private List<UIRectObject> _rectObjects = new();
     private List<int> _openIndices = new();
 
-    public void CreateRect(Rect rect, Color color, string text, string translatedText = null, string category = null, float confidence = 0f)
+    public void CreateRect(Rect rect, Color color, string text, string translatedText = null, string category = null, float confidence = 0f, string nativeTranslation = null)
     {
         if (_openIndices.Count == 0)
         {
@@ -31,7 +31,7 @@ public class DrawRect : MonoBehaviour
 
         // Set detection metadata (for click handling)
         // Use rect.center so ActionMenuPanel appears below the center of the detected object
-        rectObject.SetDetectionData(category ?? text, translatedText, confidence, rect.center);
+        rectObject.SetDetectionData(category ?? text, translatedText, confidence, rect.center, nativeTranslation);
 
         // Initially show only category name (not translation)
         // Translation will appear when user clicks the rectangle

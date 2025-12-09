@@ -129,9 +129,11 @@ public class ObjectDetectionSample : MonoBehaviour
 
             // Get instant translation from offline database
             string translatedText = null;
+            string sourceTranslation = null;
             if (_translationDatabase != null && _languageSettings != null)
             {
                 translatedText = _translationDatabase.GetTranslation(name, _languageSettings.CurrentLanguage);
+                sourceTranslation = _translationDatabase.GetTranslation(name, _languageSettings.CurrentSourceLanguage);
             }
             else if (_translateWords != null && _translateWords.IsTranslationEnabled)
             {
@@ -156,7 +158,7 @@ public class ObjectDetectionSample : MonoBehaviour
             }
 
             // Create rectangle with metadata (translation will show on click)
-            _drawRect.CreateRect(rect, colors[i % colors.Length], resultString, translatedText, categoryToDisplay.CategoryName, confidence);
+            _drawRect.CreateRect(rect, colors[i % colors.Length], resultString, translatedText, categoryToDisplay.CategoryName, confidence, sourceTranslation);
             
             OnFoundItemAtPosition?.Invoke((categoryToDisplay.CategoryName, rect.position));
                 
