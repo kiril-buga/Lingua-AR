@@ -19,6 +19,7 @@ public class ActionMenuPanel : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private Button _pronunciationButton;
     [SerializeField] private Button _examplesButton;
+    [SerializeField] private Button _saveWordButton;
     [SerializeField] private Button _closeButton;
 
     [Header("Positioning")]
@@ -27,6 +28,7 @@ public class ActionMenuPanel : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Canvas _canvas;
+    [SerializeField] private LanguageSettings _languageSettings;
 
     // ===== PRIVATE FIELDS =====
     private DetectedObjectData _currentObject;
@@ -61,6 +63,9 @@ public class ActionMenuPanel : MonoBehaviour
         if (_examplesButton != null)
             _examplesButton.onClick.AddListener(OnExamplesClicked);
 
+        if (_saveWordButton != null)
+            _saveWordButton.onClick.AddListener(OnSaveWordClicked);
+
         if (_closeButton != null)
             _closeButton.onClick.AddListener(OnCloseClicked);
 
@@ -80,6 +85,9 @@ public class ActionMenuPanel : MonoBehaviour
 
         if (_examplesButton != null)
             _examplesButton.onClick.RemoveListener(OnExamplesClicked);
+
+        if (_saveWordButton != null)
+            _saveWordButton.onClick.RemoveListener(OnSaveWordClicked);
 
         if (_closeButton != null)
             _closeButton.onClick.RemoveListener(OnCloseClicked);
@@ -134,6 +142,14 @@ public class ActionMenuPanel : MonoBehaviour
         if (_infoText != null)
         {
             _infoText.text = $"Confidence: {data.confidence:F2}";
+        }
+
+        // Show/hide Save button based on whether word is already saved
+        if (_saveWordButton != null && VocabularyManager.Instance != null)
+        {
+            bool isAlreadySaved = VocabularyManager.Instance.IsWordSaved(data.category);
+            _saveWordButton.gameObject.SetActive(!isAlreadySaved);
+            Debug.Log($"[ActionMenuPanel] Save button {(isAlreadySaved ? "hidden" : "shown")} for {data.category}");
         }
 
         // Position menu
@@ -253,6 +269,37 @@ public class ActionMenuPanel : MonoBehaviour
         else
         {
             Debug.LogWarning("[ActionMenuPanel] ExampleSentencesPanel not found");
+        }
+    }
+
+    private void OnSaveWordClicked()
+    {
+        if (_currentObject == null)
+        {
+            Debug.LogWarning("[ActionMenuPanel] No object to save");
+            return;
+        }
+
+        Debug.Log($"[ActionMenuPanel] Saving word: {_currentObject.category} ({_currentObject.translation})");
+
+        // Save word via VocabularyManager
+        if (VocabularyManager.Instance != null && _languageSettings != null)
+        {
+            VocabularyManager.Instance.SaveWord(
+                _currentObject.category,
+                _currentObject.translation,
+                _languageSettings.CurrentLanguage
+            );
+
+            // Hide save button after saving
+            if (_saveWordButton != null)
+            {
+                _saveWordButton.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[ActionMenuPanel] VocabularyManager or LanguageSettings not found");
         }
     }
 
