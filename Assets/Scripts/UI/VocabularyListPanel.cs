@@ -26,6 +26,9 @@ public class VocabularyListPanel : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private float _fadeDuration = 0.3f;
 
+    [Header("Detection Control")]
+    [SerializeField] private ObjectDetectionSample _objectDetection;
+
     // ===== PRIVATE FIELDS =====
     private List<VocabularyWordItem> _wordItems = new List<VocabularyWordItem>();
     private bool _isVisible = false;
@@ -80,6 +83,13 @@ public class VocabularyListPanel : MonoBehaviour
     public void Show()
     {
         Debug.Log("[VocabularyListPanel] Showing panel");
+
+        // Pause object detection while viewing vocabulary
+        if (_objectDetection != null)
+        {
+            _objectDetection.Pause();
+        }
+
         RefreshList();
         gameObject.SetActive(true);
         _isVisible = true;
@@ -90,6 +100,12 @@ public class VocabularyListPanel : MonoBehaviour
     {
         Debug.Log("[VocabularyListPanel] Hiding panel");
         _isVisible = false;
+
+        // Resume object detection when closing vocabulary
+        if (_objectDetection != null)
+        {
+            _objectDetection.Resume();
+        }
 
         if (instant)
         {
@@ -117,10 +133,7 @@ public class VocabularyListPanel : MonoBehaviour
     private void OnVocabularyChanged()
     {
         Debug.Log("[VocabularyListPanel] Vocabulary updated - refreshing list");
-        if (_isVisible)
-        {
-            RefreshList();
-        }
+        RefreshList();  // Always refresh when notified
     }
 
     private void RefreshList()
@@ -160,7 +173,7 @@ public class VocabularyListPanel : MonoBehaviour
         }
 
         // Sort by most recent first
-        words.Sort((a, b) => b.firstDetectedTime.CompareTo(a.firstDetectedTime));
+        words.Sort((a, b) => b.FirstDetectedDateTime.CompareTo(a.FirstDetectedDateTime));
 
         // Populate list with object pooling
         for (int i = 0; i < words.Count; i++)

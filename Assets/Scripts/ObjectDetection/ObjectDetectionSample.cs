@@ -190,6 +190,24 @@ public class ObjectDetectionSample : MonoBehaviour
     }
 
     /// <summary>
+    /// Pauses object detection indefinitely (until ResumeDetection is called).
+    /// </summary>
+    public void Pause()
+    {
+        _isPaused = true;
+        Debug.Log("[ObjectDetectionSample] Detection paused");
+    }
+
+    /// <summary>
+    /// Resumes object detection.
+    /// </summary>
+    public void Resume()
+    {
+        _isPaused = false;
+        Debug.Log("[ObjectDetectionSample] Detection resumed");
+    }
+
+    /// <summary>
     /// Toggles object detection on/off. Connect this to your Toggle button in the Inspector.
     /// </summary>
     public void ToggleObjectDetection()

@@ -34,18 +34,23 @@ public class VocabularyManager : MonoBehaviour
 
     public void SaveWord(string category, string translation, TargetLanguage language)
     {
-        if (!_vocabulary.Contains(category))
+        SavedWord word;
+        bool isNewWord = !_vocabulary.Contains(category);
+
+        if (isNewWord)
         {
-            var newWord = new SavedWord(category, translation, language);
-            _vocabulary.AddOrUpdate(newWord);
-            SaveVocabulary();
-            OnVocabularyUpdated?.Invoke();
-            Debug.Log($"[VocabularyManager] Saved new word: {category} ({translation})");
+            word = new SavedWord(category, translation, language);
+            Debug.Log($"[VocabularyManager] Saving new word: {category} ({translation})");
         }
         else
         {
-            Debug.Log($"[VocabularyManager] Word already saved: {category}");
+            word = _vocabulary.GetWord(category);
+            Debug.Log($"[VocabularyManager] Updating existing word: {category} (times: {word.timesDetected + 1})");
         }
+
+        _vocabulary.AddOrUpdate(word);  // Always update (handles both new and existing)
+        SaveVocabulary();
+        OnVocabularyUpdated?.Invoke();
     }
 
     public void DeleteWord(string category)

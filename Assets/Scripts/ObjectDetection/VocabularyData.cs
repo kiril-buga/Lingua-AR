@@ -22,7 +22,7 @@ public class VocabularyData
         var existing = GetWord(word.category);
         if (existing != null)
         {
-            existing.lastSeenTime = DateTime.Now;
+            existing.LastSeenDateTime = DateTime.Now;
             existing.timesDetected++;
         }
         else

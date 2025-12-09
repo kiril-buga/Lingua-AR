@@ -25,7 +25,7 @@ public class VocabularyWordItem : MonoBehaviour
         // Set texts
         _categoryText.text = word.category;
         _translationText.text = $"{word.savedTranslation} ({GetLanguageName(word.savedLanguage)})";
-        _dateText.text = $"Saved {GetTimeAgo(word.firstDetectedTime)}";
+        _dateText.text = $"Saved {GetTimeAgo(word.FirstDetectedDateTime)}";
 
         // Setup delete button
         _deleteButton.onClick.RemoveAllListeners();
