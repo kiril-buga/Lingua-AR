@@ -597,12 +597,4 @@ This project is licensed under the MIT License.
 
 ---
 
-## 🙏 Acknowledgments
-
-- **Niantic Lightship** for AR object detection
-- **Unity Technologies** for Unity 6 and ARFoundation
-- Code samples adapted from Niantic Lightship documentation
-
----
-
-**Built with ❤️ for language learners worldwide**
+**Built for language learners worldwide**
