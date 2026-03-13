@@ -4,6 +4,11 @@
 
 Lingua AR is an immersive AR mobile application that helps users learn new languages by detecting real-world objects and providing instant translations, example sentences, and audio pronunciation. Built with Unity and powered by Niantic Lightship ARDK.
 
+## ▶️ Demo
+
+
+https://github.com/user-attachments/assets/4c39cd16-7987-4dc5-a983-95e6d5d405d9
+
 ---
 
 ## 📱 Overview
